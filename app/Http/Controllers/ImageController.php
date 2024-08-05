@@ -23,7 +23,7 @@ class ImageController extends Controller
       
         $request->validate([
             'title' => 'required|string|max:255',
-            'tag' => 'nullable|string',
+            'tag' => 'required|string',
             'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
         if(!empty($request->file('image'))){
@@ -45,8 +45,7 @@ class ImageController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'description' => 'nullable',
-            'tag' => 'nullable',
+            'tag' => 'required',
         ]);
         if(!empty($request->file('image'))){
             $imageName = time().'.'.$request->image->extension();  
@@ -58,7 +57,7 @@ class ImageController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'tag' => $request->tag,
-            'image_url' => $image_url
+            'image_url' => isset($image_url)?$image_url:$image->image_url
         ]);
         return redirect('/gallery')->with('success', 'Image updated successfully');
     }

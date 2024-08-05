@@ -17,7 +17,7 @@
            
             <div class="mb-3">
                 <label for="formFile" class="form-label">Upload Image</label>
-                <input class="form-control" type="file" name="image" id="formFile" accept="image/*" required>
+                <input class="form-control" type="file" name="image" id="formFile" accept="image/*">
                 <img src="{{ asset($image->image_url) }}">
             </div>
 

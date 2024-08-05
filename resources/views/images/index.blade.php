@@ -1,12 +1,16 @@
 @extends('layout.master')
 @section('content')
-
 <div class="row">
-    <a href="{{ route('gallery.create') }}" class="btn-sm btn-primary">Upload New Image</a>
+  <div class="col-md-4">
+  <a href="{{ route('gallery.create') }}" class="btn btn-primary">Upload New Image</a>
+  </div>
+</div>
+<div class="row">
+    
     @if(session('success'))
-        <p>{{ session('success') }}</p>
+        <span class="alert alert-success">{{ session('success') }}</span>
     @endif
-    @foreach($images as $image)
+    @forelse($images as $image)
       
         <div class="col-md-4">
               <div class="card mb-4 shadow-sm">
@@ -31,16 +35,13 @@
                 </div>
               </div>
             </div>
-
-    @endforeach
+    @empty
+    <div class="col-md-4">
+      <div>not found any results</div>
+    </div>
+    @endforelse
     
 </div>
 
 @endsection
 
-
-<!-- 
-</div>
-
-</body>
-</html> -->
